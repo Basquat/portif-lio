@@ -8,38 +8,44 @@
 </head>
 <body>
     <header class="header">
-        <div class="logo">YouTube</div>
-        <input class="search" type="text" placeholder="Pesquisar" id="searchInput">
-        <div class="user"></div>
+        <div class="logo">YT</div>
+        <input type="text" id="searchInput" placeholder="Pesquisar">
+        <div class="user-icon"></div>
     </header>
 
-    <div class="main">
-        <nav class="sidebar">
+    <div class="container">
+        <aside class="sidebar">
             <ul>
                 <li>Início</li>
-                <li>Em alta</li>
+                <li>Shorts</li>
                 <li>Inscrições</li>
                 <li>Biblioteca</li>
             </ul>
-        </nav>
+        </aside>
 
-        <section class="videos" id="videosContainer">
+        <main class="video-grid" id="videosContainer">
             <div class="video-card">
-                <img src="https://i.ytimg.com/vi/kJQP7kiw5Fk/hqdefault.jpg" alt="Despacito">
-                <h3>Despacito - Luis Fonsi ft. Daddy Yankee</h3>
-                <p>Canal: LuisFonsiVEVO</p>
+                <img src="https://i.ytimg.com/vi/kJQP7kiw5Fk/hqdefault.jpg" alt="">
+                <div class="info">
+                    <h3>Despacito - Luis Fonsi</h3>
+                    <p>Canal: LuisFonsiVEVO</p>
+                </div>
             </div>
             <div class="video-card">
-                <img src="https://i.ytimg.com/vi/60ItHLz5WEA/hqdefault.jpg" alt="Faded">
-                <h3>Faded - Alan Walker</h3>
-                <p>Canal: Alan Walker</p>
+                <img src="https://i.ytimg.com/vi/60ItHLz5WEA/hqdefault.jpg" alt="">
+                <div class="info">
+                    <h3>Faded - Alan Walker</h3>
+                    <p>Canal: Alan Walker</p>
+                </div>
             </div>
             <div class="video-card">
-                <img src="https://i.ytimg.com/vi/09R8_2nJtjg/hqdefault.jpg" alt="Sugar">
-                <h3>Maroon 5 - Sugar</h3>
-                <p>Canal: Maroon5VEVO</p>
+                <img src="https://i.ytimg.com/vi/09R8_2nJtjg/hqdefault.jpg" alt="">
+                <div class="info">
+                    <h3>Maroon 5 - Sugar</h3>
+                    <p>Canal: Maroon5VEVO</p>
+                </div>
             </div>
-        </section>
+        </main>
     </div>
 
     <script src="youtube.js"></script>

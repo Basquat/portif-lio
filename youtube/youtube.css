@@ -1,82 +1,90 @@
-body {
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    background-color: #0f0f0f;
+    color: #ffffff;
 }
 
 .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background-color: #fff;
+    justify-content: space-between;
+    background-color: #212121;
     padding: 10px 20px;
-    border-bottom: 1px solid #ddd;
     position: sticky;
     top: 0;
     z-index: 10;
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: bold;
     color: red;
+    font-size: 22px;
+    font-weight: bold;
 }
 
-.search {
+#searchInput {
     flex: 1;
     margin: 0 20px;
-    padding: 8px;
-    font-size: 16px;
+    padding: 10px;
+    background-color: #121212;
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 20px;
 }
 
-.user {
+.user-icon {
     width: 32px;
     height: 32px;
-    background-color: #ccc;
+    background-color: #555;
     border-radius: 50%;
 }
 
-.main {
+.container {
     display: flex;
+    height: 100vh;
 }
 
 .sidebar {
-    width: 200px;
-    background-color: #fff;
-    border-right: 1px solid #ddd;
-    padding: 20px 0;
-    height: calc(100vh - 60px);
-    position: sticky;
-    top: 60px;
+    width: 220px;
+    background-color: #181818;
+    padding-top: 20px;
+    border-right: 1px solid #2c2c2c;
 }
 
 .sidebar ul {
     list-style: none;
-    padding: 0;
 }
 
 .sidebar li {
-    padding: 10px 20px;
+    padding: 15px 20px;
+    color: #ccc;
     cursor: pointer;
 }
 
 .sidebar li:hover {
-    background-color: #f0f0f0;
+    background-color: #282828;
+    color: #fff;
 }
 
-.videos {
+.video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
     padding: 20px;
+    overflow-y: auto;
     flex: 1;
 }
 
 .video-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    background-color: #1f1f1f;
+    border-radius: 10px;
     overflow: hidden;
+    border: 1px solid #333;
 }
 
 .video-card img {
@@ -84,13 +92,16 @@ body {
     display: block;
 }
 
+.video-card .info {
+    padding: 10px;
+}
+
 .video-card h3 {
+    color: #fff;
     font-size: 16px;
-    margin: 10px;
 }
 
 .video-card p {
+    color: #aaa;
     font-size: 14px;
-    color: #555;
-    margin: 0 10px 10px;
 }

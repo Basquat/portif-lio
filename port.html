@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfólio | Basquat</title>
+
+  <style>
+    /* Reset básico */
+    *, *::before, *::after {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1b1f24 0%, #121518 100%);
+      color: #c8d0e7;
+      min-height: 100vh;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      user-select: none;
+    }
+
+    a {
+      color: #6cc644;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover, a:focus {
+      color: #52b152;
+      outline: none;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: #181c20cc;
+      backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid #2e343b;
+      z-index: 1000;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 8px rgb(0 0 0 / 0.6);
+    }
+
+    header h1 {
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: #6cc644;
+      letter-spacing: 0.15rem;
+      user-select: text;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav ul li {
+      position: relative;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    nav ul li a {
+      position: relative;
+      padding-bottom: 4px;
+      display: inline-block;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: 0;
+      height: 3px;
+      width: 0;
+      background: #6cc644;
+      border-radius: 3px;
+      transition: width 0.35s ease;
+    }
+
+    nav ul li a:hover::after,
+    nav ul li a:focus::after {
+      width: 100%;
+    }
+
+    main {
+      padding: 6rem 2rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    section {
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+      will-change: transform, opacity;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Sobre */
+    #sobre {
+      padding: 2rem;
+      background: #22282f;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgb(29 34 41 / 0.6);
+      line-height: 1.6;
+      font-size: 1.15rem;
+    }
+
+    #sobre h2 {
+      color: #6cc644;
+      margin-bottom: 1rem;
+      font-weight: 800;
+      font-size: 1.9rem;
+      letter-spacing: 0.07rem;
+      user-select: text;
+    }
+
+    /* Projetos */
+    #projetos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+    }
+
+    #projetos h2 {
+      grid-column: 1 / -1;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #6cc644;
+      margin-bottom: 1.5rem;
+      user-select: text;
+    }
+
+    .projeto-card {
+      background: #22282f;
+      border-radius: 12px;
+      box-shadow:
+        0 1px 3px rgba(0,0,0,0.12),
+        0 8px 20px rgba(0,0,0,0.19);
+      padding: 1.5rem;
+      color: #c8d0e7;
+      cursor: default;
+      transition:
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      user-select: text;
+      perspective: 800px;
+    }
+
+    .projeto-card:hover {
+      transform: translateY(-12px) rotateX(8deg) rotateY(-8deg);
+      box-shadow:
+        0 20px 40px rgba(0,0,0,0.5),
+        0 5px 20px rgba(108,198,68,0.6);
+      z-index: 5;
+    }
+
+    .projeto-card h3 {
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+      color: #a2d249;
+      user-select: text;
+    }
+
+    .projeto-card p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #b0bdc9;
+      user-select: text;
+    }
+
+    /* Contato */
+    #contato {
+      background: #22282f;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgb(29 34 41 / 0.6);
+      text-align: center;
+    }
+
+    #contato h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #6cc644;
+      margin-bottom: 1rem;
+      user-select: text;
+    }
+
+    #contato p {
+      font-size: 1.1rem;
+      user-select: text;
+    }
+
+    #contato a {
+      font-weight: 700;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 2px;
+    }
+
+    #contato a:hover {
+      border-color: #52b152;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1.2rem 1rem;
+      color: #47525e;
+      font-size: 0.9rem;
+      background: #181c20;
+      border-top: 1px solid #2e343b;
+      user-select: none;
+      position: relative;
+      margin-top: 4rem;
+    }
+
+    /* Scrollbar customizada para navegadores webkit */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #121518;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #6cc644;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #52b152;
+    }
+
+    /* Responsividade */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      nav ul {
+        gap: 1.2rem;
+      }
+      main {
+        padding: 6rem 1rem 3rem;
+      }
+      #projetos {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Basquat</h1>
+    <nav aria-label="Navegação principal">
+      <ul>
+        <li><a href="#sobre" tabindex="0">Sobre</a></li>
+        <li><a href="#projetos" tabindex="0">Projetos</a></li>
+        <li><a href="#contato" tabindex="0">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="sobre" tabindex="0" aria-labelledby="sobre-title">
+      <h2 id="sobre-title">Sobre Mim</h2>
+      <p>
+        Olá! Sou Basquat, desenvolvedor full-stack apaixonado por tecnologia, design moderno e experiências digitais memoráveis. 
+        Estou sempre em busca de aprendizado contínuo, criando projetos que unem funcionalidade e beleza.
+      </p>
+    </section>
+
+    <section id="projetos" tabindex="0" aria-labelledby="projetos-title">
+      <h2 id="projetos-title">Meus Projetos</h2>
+
+      <article class="projeto-card" tabindex="0" aria-label="Projeto Atividade 1">
+        <h3>Atividade 1</h3>
+        <p>Projeto que demonstra habilidades em HTML, CSS e JavaScript para criar interfaces interativas e responsivas.</p>
+      </article>
+
+      <article class="projeto-card" tabindex="0" aria-label="Projeto Atividade 2">
+        <h3>Atividade 2</h3>
+        <p>Desenvolvimento de uma aplicação web com funcionalidades dinâmicas, usando técnicas avançadas de DOM e manipulação de eventos.</p>
+      </article>
+
+      <article class="projeto-card" tabindex="0" aria-label="Projeto Atividade 3">
+        <h3>Atividade 3</h3>
+        <p>Implementação de uma ferramenta de busca personalizada com filtros e interface amigável, focada na experiência do usuário.</p>
+      </article>
+    </section>
+
+    <section id="contato" tabindex="0" aria-labelledby="contato-title">
+      <h2 id="contato-title">Contato</h2>
+      <p>
+        Quer conversar? Me envie um email em <a href="mailto:basquat@example.com">basquat@example.com</a> ou me encontre nas redes sociais!
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Basquat - Todos os direitos reservados.
+  </footer>
+
+  <script>
+    // Animação fade-in ao scroll para as seções
+    const sections = document.querySelectorAll('section');
+
+    function revealSections() {
+      const windowBottom = window.innerHeight * 0.85;
+      sections.forEach(section => {
+        const top = section.getBoundingClientRect().top;
+        if (top < windowBottom) {
+          section.classList.add('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealSections);
+    window.addEventListener('load', revealSections);
+
+    // Acessibilidade: foco suave para navegação via teclado
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('focus', (e) => {
+        e.target.style.outline = '2px solid #52b152';
+        e.target.style.outlineOffset = '3px';
+      });
+      link.addEventListener('blur', (e) => {
+        e.target.style.outline = 'none';
+      });
+    });
+  </script>
+</body>
+</html>
