@@ -2,107 +2,107 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portfólio | Basquat</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>João Daniel | Portfólio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    /* Reset básico */
+    :root {
+      --bg: #0e1116;
+      --surface: #1b1f24;
+      --accent: #6cc644;
+      --accent-light: #52b152;
+      --text: #dce2ec;
+      --subtle: #8993a4;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
     *, *::before, *::after {
-      margin: 0; padding: 0; box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #1b1f24 0%, #121518 100%);
-      color: #c8d0e7;
-      min-height: 100vh;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      user-select: none;
-    }
-
-    a {
-      color: #6cc644;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    a:hover, a:focus {
-      color: #52b152;
-      outline: none;
+      font-family: 'Fira Code', monospace;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
     }
 
     header {
       position: fixed;
       width: 100%;
-      top: 0;
       background: #181c20cc;
-      backdrop-filter: saturate(180%) blur(12px);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid #2e343b;
-      z-index: 1000;
       padding: 1rem 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 4px 8px rgb(0 0 0 / 0.6);
+      z-index: 1000;
+      box-shadow: var(--shadow);
+      animation: slideInDown 0.6s ease-out;
+    }
+
+    @keyframes slideInDown {
+      0% { transform: translateY(-60px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
     }
 
     header h1 {
-      font-weight: 900;
+      color: var(--accent);
       font-size: 1.6rem;
-      color: #6cc644;
-      letter-spacing: 0.15rem;
-      user-select: text;
+      font-weight: 900;
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      gap: 2.5rem;
+      gap: 2rem;
     }
 
-    nav ul li {
-      position: relative;
+    nav a {
+      color: var(--text);
+      text-decoration: none;
       font-weight: 600;
-      font-size: 1rem;
-    }
-
-    nav ul li a {
       position: relative;
       padding-bottom: 4px;
-      display: inline-block;
-      transition: color 0.3s ease;
     }
 
-    nav ul li a::after {
+    nav a::after {
       content: '';
       position: absolute;
-      left: 0; bottom: 0;
-      height: 3px;
+      left: 0;
+      bottom: 0;
       width: 0;
-      background: #6cc644;
-      border-radius: 3px;
-      transition: width 0.35s ease;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
     }
 
-    nav ul li a:hover::after,
-    nav ul li a:focus::after {
+    nav a:hover::after {
       width: 100%;
     }
 
     main {
-      padding: 6rem 2rem 4rem;
       max-width: 1100px;
-      margin: 0 auto;
+      margin: 6rem auto 2rem;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
     }
 
     section {
-      margin-bottom: 4rem;
       opacity: 0;
       transform: translateY(40px);
-      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-      will-change: transform, opacity;
+      transition: all 0.6s ease;
     }
 
     section.visible {
@@ -110,240 +110,219 @@
       transform: translateY(0);
     }
 
-    /* Sobre */
-    #sobre {
-      padding: 2rem;
-      background: #22282f;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgb(29 34 41 / 0.6);
-      line-height: 1.6;
-      font-size: 1.15rem;
-    }
-
-    #sobre h2 {
-      color: #6cc644;
-      margin-bottom: 1rem;
-      font-weight: 800;
-      font-size: 1.9rem;
-      letter-spacing: 0.07rem;
-      user-select: text;
-    }
-
-    /* Projetos */
-    #projetos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2.5rem;
-    }
-
-    #projetos h2 {
-      grid-column: 1 / -1;
+    section h2 {
+      color: var(--accent);
       font-size: 2rem;
-      font-weight: 800;
-      color: #6cc644;
-      margin-bottom: 1.5rem;
-      user-select: text;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.5rem;
     }
 
-    .projeto-card {
-      background: #22282f;
+    .badge {
+      display: inline-block;
+      background: #27313a;
+      color: var(--accent-light);
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      margin: 0.3rem;
+      font-size: 0.9rem;
+      transition: transform 0.3s ease;
+    }
+
+    .badge:hover {
+      transform: scale(1.1);
+    }
+
+    .timeline {
+      border-left: 2px solid var(--accent);
+      padding-left: 1.5rem;
+    }
+
+    .timeline div {
+      margin-bottom: 1rem;
+    }
+
+    .timeline span {
+      color: var(--accent-light);
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: 0.2rem;
+    }
+
+    .card {
+      background: var(--surface);
       border-radius: 12px;
-      box-shadow:
-        0 1px 3px rgba(0,0,0,0.12),
-        0 8px 20px rgba(0,0,0,0.19);
+      box-shadow: var(--shadow);
       padding: 1.5rem;
-      color: #c8d0e7;
-      cursor: default;
-      transition:
-        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-        box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      user-select: text;
-      perspective: 800px;
+      margin-bottom: 2rem;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
-    .projeto-card:hover {
-      transform: translateY(-12px) rotateX(8deg) rotateY(-8deg);
-      box-shadow:
-        0 20px 40px rgba(0,0,0,0.5),
-        0 5px 20px rgba(108,198,68,0.6);
-      z-index: 5;
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 20px rgba(108, 198, 68, 0.2);
     }
 
-    .projeto-card h3 {
-      font-weight: 700;
-      font-size: 1.4rem;
-      margin-bottom: 0.8rem;
-      color: #a2d249;
-      user-select: text;
+    .card h3 {
+      color: var(--accent);
+      margin-bottom: 0.5rem;
     }
 
-    .projeto-card p {
-      font-size: 1rem;
-      line-height: 1.5;
-      color: #b0bdc9;
-      user-select: text;
+    .card p {
+      color: var(--text);
     }
 
-    /* Contato */
-    #contato {
-      background: #22282f;
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 4px 20px rgb(29 34 41 / 0.6);
-      text-align: center;
-    }
-
-    #contato h2 {
-      font-size: 2rem;
-      font-weight: 800;
-      color: #6cc644;
+    #contato input, #contato textarea {
+      background: #14181e;
+      color: var(--text);
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      padding: 0.7rem;
       margin-bottom: 1rem;
-      user-select: text;
+      width: 100%;
     }
 
-    #contato p {
-      font-size: 1.1rem;
-      user-select: text;
+    #contato button {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
     }
 
-    #contato a {
-      font-weight: 700;
-      border-bottom: 2px solid transparent;
-      padding-bottom: 2px;
+    #contato button:hover {
+      background: var(--accent-light);
     }
 
-    #contato a:hover {
-      border-color: #52b152;
-    }
-
-    /* Footer */
     footer {
       text-align: center;
-      padding: 1.2rem 1rem;
-      color: #47525e;
-      font-size: 0.9rem;
+      padding: 1rem;
       background: #181c20;
-      border-top: 1px solid #2e343b;
-      user-select: none;
-      position: relative;
-      margin-top: 4rem;
-    }
-
-    /* Scrollbar customizada para navegadores webkit */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #121518;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #6cc644;
-      border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: #52b152;
-    }
-
-    /* Responsividade */
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-      nav ul {
-        gap: 1.2rem;
-      }
-      main {
-        padding: 6rem 1rem 3rem;
-      }
-      #projetos {
-        grid-template-columns: 1fr;
-      }
+      color: var(--subtle);
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Basquat</h1>
-    <nav aria-label="Navegação principal">
+    <h1>João Daniel</h1>
+    <nav>
       <ul>
-        <li><a href="#sobre" tabindex="0">Sobre</a></li>
-        <li><a href="#projetos" tabindex="0">Projetos</a></li>
-        <li><a href="#contato" tabindex="0">Contato</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#objetivos">Objetivos</a></li>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#contato">Contato</a></li>
       </ul>
     </nav>
   </header>
-
   <main>
-    <section id="sobre" tabindex="0" aria-labelledby="sobre-title">
-      <h2 id="sobre-title">Sobre Mim</h2>
-      <p>
-        Olá! Sou Basquat, desenvolvedor full-stack apaixonado por tecnologia, design moderno e experiências digitais memoráveis. 
-        Estou sempre em busca de aprendizado contínuo, criando projetos que unem funcionalidade e beleza.
-      </p>
+    <section id="sobre">
+      <h2>Sobre Mim</h2>
+      <p>Sou João Daniel, estudante de Análise e Desenvolvimento de Sistemas. Gosto de aprender coisas novas, programar soluções criativas e construir projetos que tragam valor real. Estou sempre me atualizando e buscando me desafiar.</p>
     </section>
-
-    <section id="projetos" tabindex="0" aria-labelledby="projetos-title">
-      <h2 id="projetos-title">Meus Projetos</h2>
-
-      <article class="projeto-card" tabindex="0" aria-label="Projeto Atividade 1">
-        <h3>Atividade 1</h3>
-        <p>Projeto que demonstra habilidades em HTML, CSS e JavaScript para criar interfaces interativas e responsivas.</p>
-      </article>
-
-      <article class="projeto-card" tabindex="0" aria-label="Projeto Atividade 2">
-        <h3>Atividade 2</h3>
-        <p>Desenvolvimento de uma aplicação web com funcionalidades dinâmicas, usando técnicas avançadas de DOM e manipulação de eventos.</p>
-      </article>
-
-      <article class="projeto-card" tabindex="0" aria-label="Projeto Atividade 3">
-        <h3>Atividade 3</h3>
-        <p>Implementação de uma ferramenta de busca personalizada com filtros e interface amigável, focada na experiência do usuário.</p>
-      </article>
+    <section id="habilidades">
+      <h2>Habilidades</h2>
+      <div>
+        <h3>Hard Skills</h3>
+        <span class="badge">C/C++</span>
+        <span class="badge">Java</span>
+        <span class="badge">Python</span>
+        <span class="badge">HTML</span>
+        <span class="badge">MySQL</span>
+        <span class="badge">Firebase</span>
+        <span class="badge">Git/GitHub</span>
+      </div>
+      <div>
+        <h3>Soft Skills</h3>
+        <span class="badge">Liderança</span>
+        <span class="badge">Trabalho Duro</span>
+        <span class="badge">Comunicação Clara</span>
+        <span class="badge">Aprendizado Contínuo</span>
+      </div>
     </section>
+    <section id="objetivos">
+      <h2>Objetivos</h2>
+      <div class="timeline">
+        <div><span>🔧</span> Aprimorar lógica de programação e estruturas de dados</div>
+        <div><span>🌐</span> Criar interfaces web acessíveis e modernas</div>
+        <div><span>🧠</span> Dominar bancos de dados relacionais e não relacionais</div>
+        <div><span>🚀</span> Contribuir com projetos open-source</div>
+      </div>
+    </section>
+    <section id="projetos">
+  <h2>Projetos</h2>
 
-    <section id="contato" tabindex="0" aria-labelledby="contato-title">
-      <h2 id="contato-title">Contato</h2>
-      <p>
-        Quer conversar? Me envie um email em <a href="mailto:basquat@example.com">basquat@example.com</a> ou me encontre nas redes sociais!
-      </p>
+  <div class="card">
+    <h3>Clone do YouTube</h3>
+    <a href="https://github.com/Basquat/yt-dark-clone" target="_blank">
+      <img src="https://cdn.pixabay.com/photo/2017/01/06/19/15/play-button-1951166_960_720.png" alt="Imagem do projeto YouTube Clone" style="width:100%; border-radius: 8px; margin-bottom: 0.5rem;" />
+    </a>
+    <p>Inspirado na interface do YouTube com busca, layout moderno e responsivo. Desenvolvido com HTML, CSS e JS puro.</p>
+    <a href="https://basquat.github.io/yt-dark-clone" target="_blank" style="color: var(--accent); font-weight: bold; display: inline-block; margin-top: 0.5rem;">🔗 Ver Projeto Online</a>
+  </div>
+
+  <div class="card">
+    <h3>Calculadora</h3>
+    <a href="https://github.com/Basquat/js-dark-calculator" target="_blank">
+      <img src="https://cdn.pixabay.com/photo/2018/03/11/21/17/calculator-3216597_960_720.png" alt="Imagem do projeto Calculadora" style="width:100%; border-radius: 8px; margin-bottom: 0.5rem;" />
+    </a>
+    <p>Uma calculadora simples, funcional e elegante com operações básicas e tema escuro.</p>
+    <a href="https://basquat.github.io/js-dark-calculator" target="_blank" style="color: var(--accent); font-weight: bold; display: inline-block; margin-top: 0.5rem;">🔗 Ver Projeto Online</a>
+  </div>
+
+  <div class="card">
+    <h3>Portfólio</h3>
+    <a href="https://github.com/Basquat/portif-lio" target="_blank">
+      <img src="https://cdn.pixabay.com/photo/2015/07/17/22/43/profile-849719_960_720.png" alt="Imagem do projeto Portfólio" style="width:100%; border-radius: 8px; margin-bottom: 0.5rem;" />
+    </a>
+    <p>Este portfólio foi feito com atenção aos detalhes, usando boas práticas, animações suaves e um toque pessoal em cada parte.</p>
+    <a href="https://basquat.github.io/portif-lio" target="_blank" style="color: var(--accent); font-weight: bold; display: inline-block; margin-top: 0.5rem;">🔗 Ver Projeto Online</a>
+  </div>
+</section>
+
+
+    <section id="contato">
+      <h2>Contato</h2>
+      <form onsubmit="enviarMensagem(event)">
+        <input type="text" name="nome" placeholder="Seu nome" required>
+        <input type="email" name="email" placeholder="Seu email" required>
+        <textarea name="mensagem" rows="5" placeholder="Sua mensagem" required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+      <p>Email direto: <strong>joaodan.lisboagmail.com</strong> <button onclick="copiarEmail()">Copiar</button></p>
     </section>
   </main>
-
   <footer>
-    &copy; 2025 Basquat - Todos os direitos reservados.
+    &copy; 2025 João Daniel. Todos os direitos reservados.
   </footer>
-
   <script>
-    // Animação fade-in ao scroll para as seções
     const sections = document.querySelectorAll('section');
-
-    function revealSections() {
-      const windowBottom = window.innerHeight * 0.85;
-      sections.forEach(section => {
-        const top = section.getBoundingClientRect().top;
-        if (top < windowBottom) {
-          section.classList.add('visible');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
         }
+      });
+    }, { threshold: 0.2 });
+
+    sections.forEach(section => observer.observe(section));
+
+    function copiarEmail() {
+      const email = "joaodan.lisboagmail.com";
+      navigator.clipboard.writeText(email).then(() => {
+        alert("Email copiado com sucesso!");
       });
     }
 
-    window.addEventListener('scroll', revealSections);
-    window.addEventListener('load', revealSections);
-
-    // Acessibilidade: foco suave para navegação via teclado
-    document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('focus', (e) => {
-        e.target.style.outline = '2px solid #52b152';
-        e.target.style.outlineOffset = '3px';
-      });
-      link.addEventListener('blur', (e) => {
-        e.target.style.outline = 'none';
-      });
-    });
+    function enviarMensagem(e) {
+      e.preventDefault();
+      const nome = e.target.nome.value;
+      const email = e.target.email.value;
+      const mensagem = e.target.mensagem.value;
+      alert(`Obrigado, ${nome}! Sua mensagem foi enviada.`);
+      e.target.reset();
+    }
   </script>
 </body>
 </html>
